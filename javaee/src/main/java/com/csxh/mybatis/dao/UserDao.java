@@ -1,5 +1,5 @@
 
-package com.csxh.mybatis.mapper;
+package com.csxh.mybatis.dao;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import com.csxh.mybatis.model.User;
  * @author karthy
  *
  */
-public interface UserMapper {
+public interface UserDao {
 
 	public void insertUser(User user);
 

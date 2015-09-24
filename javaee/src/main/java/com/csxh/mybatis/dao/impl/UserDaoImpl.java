@@ -1,9 +1,10 @@
-package com.csxh.mybatis.dao;
+package com.csxh.mybatis.dao.impl;
 
 import java.util.List;
-import com.csxh.mybatis.mapper.UserMapper;
+
+import com.csxh.mybatis.dao.UserDao;
 import com.csxh.mybatis.model.User;
-import com.csxh.mybatis.util.MyBatisDAOUtil;
+import com.csxh.mybatis.util.MyBatisSessionUtil;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -11,13 +12,13 @@ import org.apache.ibatis.session.SqlSession;
  * @author karthy
  *
  */
-public class UserDAO {
+public class UserDaoImpl {
 
 	public void insertUser(User user) {
-		SqlSession sqlSession = MyBatisDAOUtil.getSqlSessionFactory()
+		SqlSession sqlSession = MyBatisSessionUtil.getSqlSessionFactory()
 				.openSession();
 		try {
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			UserDao userMapper = sqlSession.getMapper(UserDao.class);
 			userMapper.insertUser(user);
 			sqlSession.commit();
 		} finally {
@@ -26,10 +27,10 @@ public class UserDAO {
 	}
 
 	public User getUserById(Integer userId) {
-		SqlSession sqlSession = MyBatisDAOUtil.getSqlSessionFactory()
+		SqlSession sqlSession = MyBatisSessionUtil.getSqlSessionFactory()
 				.openSession();
 		try {
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			UserDao userMapper = sqlSession.getMapper(UserDao.class);
 			return userMapper.getUserById(userId);
 		} finally {
 			sqlSession.close();
@@ -37,11 +38,11 @@ public class UserDAO {
 	}
 
 	public List<User> getAllUsers() {
-		SqlSession sqlSession = MyBatisDAOUtil.getSqlSessionFactory()
+		SqlSession sqlSession = MyBatisSessionUtil.getSqlSessionFactory()
 				.openSession();
 		List<User> userList = null;
 		try {
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			UserDao userMapper = sqlSession.getMapper(UserDao.class);
 			userList = userMapper.getAllUsers();
 			return userList;
 
@@ -51,10 +52,10 @@ public class UserDAO {
 	}
 
 	public void updateUser(User user) {
-		SqlSession sqlSession = MyBatisDAOUtil.getSqlSessionFactory()
+		SqlSession sqlSession = MyBatisSessionUtil.getSqlSessionFactory()
 				.openSession();
 		try {
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			UserDao userMapper = sqlSession.getMapper(UserDao.class);
 			userMapper.updateUser(user);
 			sqlSession.commit();
 		} finally {
@@ -64,10 +65,10 @@ public class UserDAO {
 	}
 
 	public void deleteUser(Integer userId) {
-		SqlSession sqlSession = MyBatisDAOUtil.getSqlSessionFactory()
+		SqlSession sqlSession = MyBatisSessionUtil.getSqlSessionFactory()
 				.openSession();
 		try {
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+			UserDao userMapper = sqlSession.getMapper(UserDao.class);
 			userMapper.deleteUser(userId);
 			sqlSession.commit();
 		} finally {

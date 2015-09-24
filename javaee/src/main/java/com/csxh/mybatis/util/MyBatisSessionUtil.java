@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -11,11 +12,11 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  * @author karthy
  *
  */
-public class MyBatisDAOUtil {
+public class MyBatisSessionUtil {
 
 	private static SqlSessionFactory factory;
 
-	private MyBatisDAOUtil() {
+	private MyBatisSessionUtil() {
 	}
 
 	static {
@@ -30,5 +31,9 @@ public class MyBatisDAOUtil {
 
 	public static SqlSessionFactory getSqlSessionFactory() {
 		return factory;
+	}
+
+	public static SqlSession getSqlSession() {
+		return factory.openSession();
 	}
 }
